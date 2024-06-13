@@ -29,7 +29,16 @@ router.patch('/:id', (req, res) => {
 
 // delete a note
 router.delete('/:id', (req, res) => {
-    res.send(`you deleted ${req.params.id}'s note`)
+    // res.send(`you deleted ${req.params.id}'s note`)
+    const id = req.params.id
+    
+    for(let i = 0; i < notes.length; i ++){
+        if(notes[i].id == id){
+            notes.splice(i, 1)
+        }
+    }
+    res.redirect('/notes')
+    
 })
 
 module.exports = router
