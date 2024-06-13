@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const notes = [{id: 1, title: 'first note', content: 'first content'}, {title: 'second note', content: 'second content'}]
+const notes = [] //[{id: 1, title: 'first note', content: 'first content'}, {title: 'second note', content: 'second content'}]
 
 // get all notes
 router.get('/', (req, res) => { //  :title/:content
@@ -19,7 +19,12 @@ router.post('/', (req, res) => {
 
 // update note
 router.patch('/:id', (req, res) => {
-    res.send(`you can update ${req.params.id}'s note hrer`)
+    // res.send(`you can update ${req.params.id}'s note hrer`)
+    const note = notes.find(n => n.id == req.params.id)
+    note.title = req.body.title || note.title
+    note.content = req.body.content || note.content
+    // res.redirect('/notes')
+    res.json(notes);
 })
 
 // delete a note
