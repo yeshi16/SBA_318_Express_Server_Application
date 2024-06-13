@@ -12,6 +12,9 @@ app.use(express.json())
 app.set('view engine', 'pug'); // use pug view engine 
 app.set('views', path.join(__dirname, 'views'))
 
+// style static file
+app.use(express.static('public'));
+
 // notes route
 app.use('/notes', notesRouter)
 
