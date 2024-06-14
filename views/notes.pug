@@ -6,14 +6,9 @@ html
         
     body 
         nav 
-            a(href="/home") Home
+            a(href="/") Home
             a(href="/notes") All Notes
         h1 Notes 
-        //- ul
-        //-     each note in notes 
-        //-         li 
-        //-             | #{note.title} 
-        //-             | #{note.content}
         .notesContainer 
             each note in notes 
                 .card 
@@ -22,11 +17,8 @@ html
                     .cardContent #{note.content} 
         h2 Add New Note            
         form(action='/notes' method='POST')
-            
-            div.mb-3
-                input(type='text' name='title' placeholder='Title' required)
+            input(type='text' name='title' placeholder='Title' required)
             br
-            div.mb-3
-                textarea(name="content" placeholder='Note' rows="3" required)
-                br        
-                button(type="submit") Add Note  
+            textarea(name="content" placeholder='Note' rows="3" required)
+            br        
+            button(type="submit") Add Note  

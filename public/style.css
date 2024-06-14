@@ -37,3 +37,13 @@ button {
 .noteId{
     text-align: right;
 }
+
+input{
+    padding: 5px;
+    border: 3px solid rgb(8, 8, 96);
+
+ }
+ textarea{
+    border: 3px solid rgb(8, 8, 96);
+    margin-top: 10px;
+ }

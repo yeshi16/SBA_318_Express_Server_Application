@@ -4,7 +4,7 @@ const port = 3000;
 const path = require('path')
 
 const notesRouter = require('./routes/notes')
-
+const error = require('./utility/error')
 // middleware for parsing json
 app.use(express.json())
 
@@ -27,4 +27,20 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.js
+// 404 Middleware
+app.use((req, res, next) => {
+    next(error(404, "Resource Not Found"));
+  });
+  
+  // Error-handling middleware.
+  // Any call to next() that includes an
+  // Error() will skip regular middleware and
+  // only be processed by error-handling middleware.
+  // This changes our error handling throughout the application,
+  // but allows us to change the processing of ALL errors
+  // at once in a single location, which is important for
+  // scalability and maintainability.
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({ error: err.message });
+  });
