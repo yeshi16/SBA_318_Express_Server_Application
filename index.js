@@ -5,12 +5,22 @@ const path = require('path')
 
 const notesRouter = require('./routes/notes')
 const error = require('./utility/error')
+
 // middleware for parsing json
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 // set template engine
 app.set('view engine', 'pug'); // use pug view engine 
 app.set('views', path.join(__dirname, 'views'))
+
+// middleware
+const logReq = function (req, res, next) {
+    console.log(`Request Received for ${req.method} method`);
+    next();
+  };
+  
+  app.use(logReq);
 
 // style static file
 app.use(express.static('public'));

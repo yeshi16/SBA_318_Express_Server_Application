@@ -6,19 +6,23 @@ html
         
     body 
         nav 
-            a(href="/") Home
+            a(href="/") Home 
+            | &nbsp; &nbsp;           
             a(href="/notes") All Notes
         h1 Notes 
         .notesContainer 
             each note in notes 
                 .card 
-                    h5.noteId #{note.id}
+                    h3.noteId  #{note.id}
+                    | &nbsp; &nbsp;
+                    - const time = new Date().toLocaleTimeString()
+                    h4.posted Posted: #{time}
                     h3.cardTitle #{note.title}
                     .cardContent #{note.content} 
-        h2 Add New Note            
+        h2 Add New Note       
         form(action='/notes' method='POST')
             input(type='text' name='title' placeholder='Title' required)
             br
-            textarea(name="content" placeholder='Note' rows="3" required)
+            textarea(name="content" placeholder='Note' rows="5" required)
             br        
-            button(type="submit") Add Note  
+            button(type="submit") Add Note 
